@@ -94,7 +94,10 @@ The current implementation uses the `llama_cpp` crate (version 0.3.2). To enable
 
 ### Example Model Integration
 
+**Note:** The code below is pseudocode that illustrates the general approach. You will need to adapt it to match the actual API of llama_cpp v0.3.2. Please refer to the [llama_cpp documentation](https://docs.rs/llama_cpp/0.3.2) for the exact API.
+
 ```rust
+// Pseudocode example - adapt to actual llama_cpp v0.3.2 API
 use llama_cpp::{LlamaModel, LlamaParams, CompletionParams};
 
 fn generate_code(description: &str) -> Result<String, String> {

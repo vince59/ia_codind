@@ -1,6 +1,9 @@
 use std::io::{self, Write};
 use std::process;
 
+/// Minimum length required for a code description
+const MIN_DESCRIPTION_LENGTH: usize = 5;
+
 fn main() {
     println!("=== IA Coding - Code Generator ===");
     println!("Generate Rust code from natural language descriptions");
@@ -58,23 +61,26 @@ fn generate_code(description: &str) -> Result<String, String> {
         return Err("Description cannot be empty".to_string());
     }
 
-    if description.len() < 5 {
-        return Err("Description is too short. Please provide a more detailed description.".to_string());
+    if description.len() < MIN_DESCRIPTION_LENGTH {
+        return Err(format!(
+            "Description is too short. Please provide a more detailed description (at least {} characters).",
+            MIN_DESCRIPTION_LENGTH
+        ));
     }
 
     // TODO: Integration with llama_cpp will be implemented here
-    // For now, we'll provide a placeholder implementation that demonstrates
-    // the structure and error handling
+    // For now, we return an error explaining the model configuration requirement
+    // Once a model is configured, replace this with actual llama_cpp code
+    // See README.md for detailed integration instructions
     
-    // Since we need a model file to use llama_cpp, and it's not provided in the requirements,
-    // we'll create a placeholder that explains how to integrate it
     Err(format!(
-        "Model integration pending. To use llama_cpp:\n\
+        "Model not configured. To enable code generation:\n\
          1. Download a GGUF model file (e.g., from Hugging Face)\n\
-         2. Place it in the project directory\n\
-         3. Update the code to load the model\n\
+         2. Place it in a 'models' directory in the project root\n\
+         3. Update the generate_code() function to load and use the model\n\
+         4. See README.md for detailed instructions\n\
          \n\
-         Your description was: '{}'",
+         Your request: '{}'",
         description
     ))
 }
